@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}About{% endblock title %}
+
+{% block banner_slidder %}
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="{% static 'images/bg3.jpg' %}" class="d-block w-100" alt="banner images">
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'images/bg2.jpg' %}" class="d-block w-100" alt="banner images">
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'images/bg3.jpg'%}" class="d-block w-100" alt="banner images">
+          </div>
+        </div>
+      </div>
+{% endblock banner_slidder %}
+
+{% block main.content %}
+    <div class="container mt-3">
+        <br>
+        <h2 class="text-center">About Us</h2>
+        <br>
+        <div class="row container">
+            <p class="fs-4 text-center">This is a public limited company having its registered and corporate office at Harare city of Zimbabwe . The company was incoporated in the 2012 and production commenced in 2015.
+            This is one of the fastest growing Private limited Company in Harare.
+            </p>
+        </div>
+
+        <br><br>
+        <h2 class="text-center">Mission</h2>
+        <br>
+        <div class="row container">
+            <p class="fs-4 text-center">To embrace the right technology to delight our Constomers
+                Empowering the farmer community through our unique 'Relationship Farming' Model to anticipate, understand and respond to our Customers' needs by creating high-quality products and making them availble through innovative and convenient channels
+            </p>
+        </div>
+
+    </div>
+    <br><br>
+{% endblock main.content %}

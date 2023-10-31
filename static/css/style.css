@@ -1,0 +1,14 @@
+/* Required height of parents of the Half Page Carousel for proper displaying carousel itself */
+html,
+body,
+.view {
+  height: 50%; }
+
+/* Half Page Carousel itself*/
+
+
+.mlkpro{
+    color:#636362;
+    
+}
+

@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Category{% endblock title %}
+
+{% block main.content %}
+    <div class="container">
+        {% for msg in messages %}
+            <div class="alerr alert-danger" role="alert">{{msg}}
+            </div>
+        {% endfor %}
+        <div class="row mt-5">
+            <div class="col-sm-6">
+                <h4>Order Summary</h4>
+                <hr>
+                {% for item in cart_items %}
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <h5>Product: {{item.product.title}}</h5>
+                        <p>Quantity: {{item.quantity}}</p>
+                        <p class="fw-bold">Price:
+                            {{item.product.discounted_price}}
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+                <p class="fw-bold">Total Cost + USD.40 = {{totalamount}}</p>
+                <small>Terms and Conditions: leo do tee plus jsdjc pli hunmamj hameno kuti zviri kureva anything hr or kungo nyora wo zvangu but ka proram manayama aka kachabhadhara zvako we do not work for nothing in return , in God we trust </small>
+                
+            </div>
+            <div class="col-sm-4 offset-sm-1">
+                <h4>Select Shipping Address</h4>
+                <hr>
+                <form method="post" id="myform">
+                    {% csrf_token %}
+                    {% for ad in add%}
+                    <div class="card">
+                        <div class="card-body">
+                            <h5>{{ad.name}}</h5>
+                            <p>Mobile: {{ad.mobile}}</p>
+                            <p>{{ad.Locality}} {{ad.city}} {{ad.state}} - {{ad.zipcode}}</p>
+                        </div>
+                    </div>
+                    <div class="form-check mt-2 mb-5">
+                            <input class="form-check-label" type="radio" name="custid" id="custadd{{forloop.counter}}" value="{{ad.id}}">
+                            <label class="form-check-label fw-bold" for="custadd{{forloop.count}}">Address:{{forloop.counter}}</label>                        
+                    </div>
+                    {% endfor %}
+                    <div class="form-check mb-3">
+                        <label for="totamount" class="form-label fw-bold">Total Amount</label>                        
+                        <input type="number" class="form-control" name="totalamount" value="{{totalamount}}" readonly>
+                    </div> 
+                    <div class="text-end">
+                     <!--   <button type="submit" class="btn btn-warning mt-3 px-5 fw-bold">Continue</button>-->
+                    
+                        <button id="rzp-button1" type="submit" class="btn btn-earning mt-3 px-5 fw-bold">Payment</button>
+                    </div>
+                </form>
+            </div>
+        </div>    
+    </div>
+{% endblock main.content %}
+
+{% block payment-gateway %}
+    <script>
+        var options = {
+            "key": "rzp_test_faPNBFG3i2vcN6", // Enter the Key ID generated from the Dashboard
+            "amount": "{{razoramount}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "USD",
+            "name": "PyTech Corp", //your business name
+            "description": "Test Transaction",
+            "image": "https://example.com/your_logo",
+            "order_id": "{{order_id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
+            "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information especially their phone number
+                "name": "Pearson Grant", //your customer's name
+                "email": "pearsongrant23@example.com",
+                "contact": "9000090000" //Provide the customer's phone number for better conversion rates 
+            },
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        document.getElementById('rzp-button1').onclick = function(e){
+            rzp1.open();
+            e.preventDefault();
+        }
+    </script>
+
+{% endblock payment-gateway %}
