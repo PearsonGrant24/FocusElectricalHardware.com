@@ -1,8 +1,13 @@
+
+
 # FocusElectricalHardware.com
 
 This is a simple e-commerce website built with Django.
 
 ## Project Summary
+
+![Bunner11](https://github.com/PearsonGrant24/FocusElectricalHardware.com/assets/100286838/981ef036-f1a8-4ab1-8d34-29ee3cfe2033)
+
 
 The website displays electrical products that users can add and remove to/from their cart while specifying the quantity of each item. Users can then enter their address and choose Stripe to handle the payment processing.
 
